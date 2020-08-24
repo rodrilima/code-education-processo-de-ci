@@ -40,7 +40,7 @@ services:
       - app
 
   db:
-    image: mysql:5.7
+    build: .docker/mysql
     command: --innodb-use-native-aio=0
     container_name: db
     restart: always
@@ -52,6 +52,7 @@ services:
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_PASSWORD=root
       - MYSQL_USER=root
     networks:
       - app-network
