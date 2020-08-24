@@ -2,14 +2,17 @@
 
 O projeto se baseia em duas tarefas:
 
-- [X] Baseado em nosso projeto exemplo Laravel, utilize o sistema de templates do Dockerize para que ele ajude no processo de deixar o arquivo nginx.conf mais flexível, ou seja, tanto o host e porta da chamada do php-fpm possam ser definidos como variáveis de ambiente no docker-compose.yaml.
+- [X] Você deverá pegar sua aplicação Laravel das fases anteriores e adicioná-la em um pipeline de integração contínua utilizando o Google Cloud Build, para isso terá que:
 
-- [X] Esse desafio é muito empolgante principalmente se você nunca trabalhou com a linguagem Go!
-Você terá que publicar uma imagem no docker hub. Quando executarmos:
+    Gerar a imagem do docker-compose e fazer o push no seu Container Registry do GCP. 
+    Criar uma trigger para ser disparada todas as vezes que um commit entrar no repositório do Github.
+    Os steps do Google Cloud Build deverão ser:
+        Executar o docker-compose
+        Executar o composer
+        Copiar o arquivo .env.example para .env
+        Rodar um artisan key:generate
+        Executar as migrações
+        Executar os testes utilizando o PHPUnit
 
-docker run rodelima/codeeducation 
 
-Temos que ter o seguinte resultado: Code.education Rocks!
-
-Acesso o projeto no dockerhub:
-https://hub.docker.com/repository/docker/rodelima/codeeducation
+- [X] Você deverá instalar a App do Google Cloud Build disponível no Market Place do Github. Crie um branch develop em seu repositório. Todas as vezes que uma pull request for criada, imediatamente o Google Cloud Build deverá iniciar o processo de CI.
